@@ -60,11 +60,6 @@ MERGE (:DevelopmentCard {id: 3, name: "Market"})
 MERGE (:DevelopmentCard {id: 4, name: "Palace"})
 MERGE (:DevelopmentCard {id: 5, name: "University"})
 
-////////////////////////////////////////////
-////////////////////////////////////////////
-// everything below in the work
-////////////////////////////////////////////
-////////////////////////////////////////////
 
 // Add context to (:TerrainHex)
 WITH [["Fields", "Grain"], 
@@ -98,22 +93,22 @@ MATCH (th:TerrainHex)
 SET th.name = "",
 	th.resource = ""
 
-The nineteen (19) terrain hexes are distributed as follows:
-Four (4) Fields (Grain Resource) Hexes.
-Four (4) Forest (Lumber Resource) Hexes.
-Four (4) Pasture (Wool Resource) Hexes.
-Three (3) Mountains (Ore Resource) Hexes.
-Three (3) Hills (Brick Resource) Hexes.
-One (1) Desert (No Resource) Hex.
+//Create the player pieces
+UNWIND ["Red", "White", "Orange", "Blue"] AS colors
+UNWIND range(1,4) as numCity
+MERGE (:City {id: numCity, color: colors})
+WITH colors
+UNWIND range(1,5) as numSettlement
+MERGE (:Settlement {id: numSettlement, color: colors})
+WITH colors
+UNWIND range (1,15) as numRoad
+MERGE (:Road {id: numRoad, color: colors})
 
-
-
-//Create the pieces
-UNWIND ["red", "white", "orange", "blue"] AS color
-RETURN color
-
-
-
+////////////////////////////////////////////
+////////////////////////////////////////////
+// everything below in the work
+////////////////////////////////////////////
+////////////////////////////////////////////
 
 One x "2" (B:*).
 Two x "3" (D, Q:**).

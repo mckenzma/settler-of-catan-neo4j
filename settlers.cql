@@ -67,10 +67,36 @@ MERGE (:DevelopmentCard {id: 5, name: "University"})
 ////////////////////////////////////////////
 
 // Add context to (:TerrainHex)
-MATCH (th:TerrainHex)
-UNWIND apoc.coll.shuffle(range(1,19,1)) AS value
+WITH [["Fields", "Grain"], 
+      ["Fields", "Grain"], 
+      ["Fields", "Grain"], 
+      ["Fields", "Grain"], 
+      ["Forest", "Wood"], 
+      ["Forest", "Wood"], 
+      ["Forest", "Wood"], 
+      ["Forest", "Wood"], 
+      ["Pasture", "Wool"],
+      ["Pasture", "Wool"], 
+      ["Pasture", "Wool"], 
+      ["Pasture", "Wool"], 
+      ["Mountains", "Ore"], 
+      ["Mountains", "Ore"], 
+      ["Mountains", "Ore"], 
+      ["Hills", "Brick"], 
+      ["Hills", "Brick"], 
+      ["Hills", "Brick"], 
+      ["Desert", "None"]] AS resources
+WITH apoc.coll.shuffle(resources) AS resources
+UNWIND range(1,19) AS value
 MATCH (th:TerrainHex {id: value})
-RETURN th.id
+WITH th, resources[value -1] AS hexName
+SET th.name = hexName[0], 
+	th.resource = hexName[1]
+
+// Clear (:TerrainHex) properties
+MATCH (th:TerrainHex)
+SET th.name = "",
+	th.resource = ""
 
 The nineteen (19) terrain hexes are distributed as follows:
 Four (4) Fields (Grain Resource) Hexes.

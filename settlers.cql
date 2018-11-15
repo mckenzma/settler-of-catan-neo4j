@@ -104,23 +104,30 @@ WITH colors
 UNWIND range (1,15) as numRoad
 MERGE (:Road {id: numRoad, color: colors})
 
+//Create number tokens
+MERGE (:NumberToken {id: "A", roll: 5, probability: "****"})
+MERGE (:NumberToken {id: "B", roll: 2, probability: "*"})
+MERGE (:NumberToken {id: "C", roll: 6, probability: "*****"})
+MERGE (:NumberToken {id: "D", roll: 3, probability: "**"})
+MERGE (:NumberToken {id: "E", roll: 8, probability: "*****"})
+MERGE (:NumberToken {id: "F", roll: 10, probability: "***"})
+MERGE (:NumberToken {id: "G", roll: 9, probability: "****"})
+MERGE (:NumberToken {id: "H", roll: 12, probability: "*"})
+MERGE (:NumberToken {id: "I", roll: 11, probability: "**"})
+MERGE (:NumberToken {id: "J", roll: 4, probability: "***"})
+MERGE (:NumberToken {id: "K", roll: 8, probability: "*****"})
+MERGE (:NumberToken {id: "L", roll: 10, probability: "***"})
+MERGE (:NumberToken {id: "M", roll: 9, probability: "****"})
+MERGE (:NumberToken {id: "N", roll: 4, probability: "***"})
+MERGE (:NumberToken {id: "O", roll: 5, probability: "****"})
+MERGE (:NumberToken {id: "P", roll: 6, probability: "*****"})
+MERGE (:NumberToken {id: "Q", roll: 3, probability: "**"})
+MERGE (:NumberToken {id: "R", roll: 11, probability: "**"})
+
 ////////////////////////////////////////////
 ////////////////////////////////////////////
 // everything below in the work
 ////////////////////////////////////////////
 ////////////////////////////////////////////
-
-One x "2" (B:*).
-Two x "3" (D, Q:**).
-Two x "4" (J, N:***).
-Two x "5" (A, O:****).
-Two x "6" (C, P:*****).
-Two x "8" (E, K:*****).
-Two x "9" (G, M:****).
-Two x "10" (F, L:***).
-Two x "11" (I, R:**).
-One x "12" (H:*).
-
-
 
 
